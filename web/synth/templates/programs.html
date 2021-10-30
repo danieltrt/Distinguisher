@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/rainbow-custom.min.css' %}">
+<script src="{% static 'js/rainbow-custom.min.js' %}"></script>
+
+<section style="background-color: white" class="jumbotron text-center">
+    <div class="container h-100" style="width: 100%">
+        <h4 class="jumbotron-heading">Best programs found:</h4>
+        <br>
+        {% for p in programs %}
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div>
+                    <pre><code data-language="c">{{p}}</code></pre>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+

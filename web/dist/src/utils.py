@@ -39,6 +39,7 @@ class PlotGenerator:
 
     def gen_bar_plot(self, table, title, maximum):
         PlotGenerator.lock.acquire()
+        maximum = max(maximum, 1)
         self.fig_n += 1
         self.n += 1
         plt.figure(figsize=(8, 6), dpi=300)

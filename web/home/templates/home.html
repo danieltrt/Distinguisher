@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
 <style>
@@ -79,7 +78,8 @@
             <h1 style="font-variant: small-caps; font-weight: 600" class="display-5">UnchartIt</h1>
             <h5 style="font-weight: 300; color: #404040;">An Interactive Framework for Program Recovery from Charts</h5>
             <hr>
-            <p style="font-size: 100%; text-align: justify" class="mt-5"><span style="font-variant: small-caps;">UnchartIt</span>
+	    <p class="mt-3">Welcome to <b style="font-variant: small-caps;">UnchartIt</b>'s homepage! </p>
+            <p style="font-size: 100%; text-align: justify" class="mt-4"><span style="font-variant: small-caps;">UnchartIt</span>
                 is the first program synthesizer
                 to recover data transformations from chart images.
                 Given an input table and a chart, <span style="font-variant: small-caps;">UnchartIt</span>
@@ -93,7 +93,8 @@
             </p>
             <ul class="icons">
                 <li>
-                    <a href="https://github.com/danieltrt/Distinguisher" class="fa fa-file">
+		    {% load static %}
+	            <a href="{% static "paper.pdf" %}" class="fa fa-file"/>
                         <span>Paper</span>
                     </a>
                 </li>
@@ -106,8 +107,9 @@
         </div>
     </div>
     <div class="container">
-        <img id="pipeline" class="img-fluid mx-auto d-block" src="/media/new_unchartit.pdf"/>
-        <img id="pipeline_vertical" class="img-fluid mx-auto d-block" src="/media/unchartit_vertical.pdf"/>
+	    {% load static %}
+	    <img id="pipeline" class="img-fluid mx-auto d-block" src="{% static "horizontal.png" %}"/>
+	    <img id="pipeline_vertical" class="img-fluid mx-auto d-block" src="{% static "vertical.png" %}"/>
     </div>
 </main>
 

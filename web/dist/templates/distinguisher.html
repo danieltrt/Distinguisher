@@ -19,7 +19,17 @@
         /* progress bar covers file name */
         display: none !important;
     }
+    @media (min-width: 768px) {
+        #rude {
+            width: 70%;
+        }
+    }
 
+    @media (min-width: 1920px) {
+        #rude {
+            width: 70%;
+        }
+    }
 </style>
 <script>
 
@@ -35,8 +45,7 @@
         uploadMultiple: true,
         addRemoveLinks: true,
         maxFilesize: 1, // MB
-        url: "{% url 'dist:upload' %}",
-        headers: {'X-CSRFToken': '{{ csrf_token }}'},
+        url: "/unchartit" + "{% url 'dist:upload' %}",
         init: function () {
             let submitButton = document.querySelector("#submit-all")
             myDropzone = this; // closure
@@ -54,7 +63,7 @@
 
             this.on("complete", function (file) {
                 if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                    window.location.replace(file.xhr.response)
+                    window.location.replace('/unchartit' + file.xhr.response)
                 }
             });
 
@@ -196,6 +205,26 @@
 
     }
 </script>
+<div class="jumbotron" style="margin-bottom: 0px; padding-bottom: 0px; background-color: white !important;">
+    <div class="container-fluid" id="rude">
+        <h4 style="font-weight: 500;">Program Disambiguation</h4>
+        <hr>
+        <ul>
+            <li style="font-size: 100%; text-align: justify" class="mt-1">
+                Program disambiguation allows <span style="font-variant: small-caps; font-weight: 600">UnchartIt</span>
+                to disambiguate the most promising candidate programs.
+            </li>
+            <li style="font-size: 100%; text-align: justify" class="mt-1">
+                <span style="font-variant: small-caps; font-weight: 600">UnchartIt</span>
+                selects the top ranking programs and interacts with the user to disambiguate them.
+            </li>
+            <li style="font-size: 100%; text-align: justify" class="mt-1">
+		{% load static %}
+		Download some <a href="{% static 'programs.tar.gz' %}">program examples here</a>.
+            </li>
+        </ul>
+    </div>
+</div>
 
 <div class="container">
     <div style="padding-bottom: 50px" class="row"></div>

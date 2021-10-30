@@ -38,10 +38,10 @@
             {% for choice in question.choice_set.all %}
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img class="mx-auto d-block card-img-top" width="100%" src="/media/{{choice.choice_text}}"/>
+                    <img class="mx-auto d-block card-img-top" width="100%" src="/unchartit/media/{{choice.choice_text}}"/>
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
-                            <form style="margin: auto" action="{% url 'dist:submit' question.id %}" method="post">
+                            <form style="margin: auto" action="/unchartit{% url 'dist:submit' question.id %}" method="post">
                                 {% csrf_token %}
                                 <button name="choice" value="{{ choice.id }}" type="submit" class="btn btn-sm btn-outline-secondary">This one!</button>
                             </form>

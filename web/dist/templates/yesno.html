@@ -29,11 +29,11 @@
         </div>
         <div class="col-md-6 my-auto">
             <div style="text-align: center; padding-top: 10px" class="justify-content-center"><h4>Is the following output chart correct?</h4></div>
-            <form action="{% url 'dist:submit' question.id %}" method="post">
+            <form action="/unchartit{% url 'dist:submit' question.id %}" method="post">
             {% csrf_token %}
             {% for choice in question.choice_set.all %}
                 <div class="option">
-                    <img src="/media/{{choice.choice_text}}" />
+                    <img src="/unchartit/media/{{choice.choice_text}}" />
                 </div><br>
                 <div class="option">
                     <button name="choice_yes" value="{{ choice.id }}" type="submit" class="btn btn-outline-success">Yes</button>

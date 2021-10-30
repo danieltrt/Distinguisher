@@ -2,5 +2,100 @@
 
 {% block content %}
 
+<style>
+    @media (min-width: 768px) {
+        #rude {
+            width: 70%;
+        }
+    }
+
+    @media (min-width: 1920px) {
+        #rude {
+            width: 70%;
+        }
+    }
+</style>
+
+<script>
+    let c = 0;
+
+    function count() {
+        c += 1;
+        if (c >= 2) {
+            let submitButton = document.querySelector("#submit-all")
+            submitButton.classList.remove("disabled");
+        }
+    }
+
+    window.onload = function () {
+        document.querySelector("#input").onchange = count;
+        document.querySelector("#output").onchange = count;
+    }
+
+    function enter_loading() {
+        document.querySelector("#loading").hidden = false;
+    }
+
+
+
+</script>
+
+
+<div class="jumbotron" style="margin-bottom: 0px; padding-bottom: 0px; background-color: white !important;">
+    <div class="container-fluid" id="rude">
+        <h4 style="font-weight: 500;">Program Synthesis</h4>
+        <hr>
+        <ul>
+            <li style="font-size: 100%; text-align: justify" class="mt-1">
+                After interpreting the chart, <span style="font-variant: small-caps; font-weight: 600">UnchartIt</span>
+                needs to find a program that maps the input table into the desired output.
+            </li>
+            <li style="font-size: 100%; text-align: justify" class="mt-1">
+                However, <span style="font-variant: small-caps; font-weight: 600">UnchartIt</span>
+                doesn't have access to the desired output! Only an approximation, extracted in the previous step.
+            </li>
+            <li style="font-size: 100%; text-align: justify" class="mt-1">
+                Download some <a href="">input-output examples here</a>.
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div style="padding-bottom: 50px" class="row">
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form method="post" enctype="multipart/form-data" action="/unchartit{% url 'synth:upload' %}" >
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="input">Input table:</label>
+                        <input type="file" name="input" id="input"/>
+                    </div>
+                    <div class="form-group col-md-2"> </div>
+                    <div class="form-group col-md-3">
+                        <label for="output">Output table:</label>
+                        <input type="file" name="output" id="output"/>
+                    </div>
+                    <div class="form-group col-md-4"> </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <button onclick="enter_loading()" type="submit" style="float: right;" id="submit-all" class="btn btn-primary disabled">
+                        Submit
+                        <span id="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                              hidden></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
 
 {% endblock %}
+
+

@@ -21,6 +21,18 @@
         display: none !important;
     }
 
+    @media (min-width: 768px) {
+        #rude {
+            width: 70%;
+        }
+    }
+
+    @media (min-width: 1920px) {
+        #rude {
+            width: 70%;
+        }
+    }
+
 </style>
 
 <script>
@@ -31,7 +43,7 @@
         parallelUploads: 1,
         addRemoveLinks: true,
         maxFilesize: 1, // MB
-        url: "{% url 'data:upload' %}",
+        url: "/unchartit" + "{% url 'data:upload' %}",
         init: function () {
             let submitButton = document.querySelector("#submit-all")
             myDropzone = this; // closure
@@ -49,7 +61,7 @@
 
             this.on("complete", function (file) {
                 if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                    window.location.replace(file.xhr.response)
+		    window.location.replace('/unchartit' + file.xhr.response)
                 }
             });
 
@@ -66,8 +78,31 @@
 </script>
 
 
+<div class="jumbotron" style="margin-bottom: 0px; padding-bottom:0px; background-color: white !important;">
+    <div class="container-fluid" id="rude">
+        <h4 style="font-weight: 500;">Data Extraction</h4>
+        <hr>
+        <ul>
+            <li style="font-size: 100%; text-align: justify" class="mt-1"> In the data extraction step,
+                <span style="font-variant: small-caps; font-weight: 600">UnchartIt</span> automatically extracts data from a chart.
+            </li>
+            <li style="font-size: 100%; text-align: justify" class="mt-1">
+                Currently, <span style="font-variant: small-caps; font-weight: 600">UnchartIt</span> can only interpret bar charts.
+                The user needs to provide the <b>min</b> & <b>max</b> values of the vertical axis.
+            </li>
+            <li style="font-size: 100%; text-align: justify" class="mt-1">
+		{% load static %}
+		Download some <a href="{% static 'charts.tar.gz' %}">bar chart examples here</a>.
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
 <div class="container">
-    <div style="padding-bottom: 50px" class="row"></div>
+    <div style="padding-bottom: 50px" class="row">
+    </div>
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">

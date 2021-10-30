@@ -17,7 +17,7 @@
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a style="font-variant: small-caps;" class="navbar-brand" href="/">UnchartIt</a>
+    <a style="font-variant: small-caps;" class="navbar-brand" href="/unchartit/">UnchartIt</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#components"
             aria-controls="components" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,13 +26,13 @@
     <div class="collapse navbar-collapse" id="components">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/data/">Data Extraction <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/unchartit/data/">Data Extraction <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/synth/">Synthesizer <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/unchartit/synth/">Synthesizer <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/dist/">Distinguisher <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/unchartit/dist/">Distinguisher <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
@@ -45,16 +45,16 @@
         <hr>
         <div class="row">
             <div class="col-md-7 my-auto">
-                <p>The source code is made available on <a href="/">GitHub</a> under some license.</p>
+                <p>The source code is made available on <a href="https://github.com/danieltrt/UnchartIt_UI">GitHub</a> under some license.</p>
                 <p>To contact the authors please send an email to: <a href="mailto:unchartit@sat.inesc-id.pt">unchartit@sat.inesc-id.pt</a>
                 </p>
             </div>
             <div class="col-md-5 d-flex justify-content-around align-items-center">
                 <p>
-                    <img style="width: 125px;" class="img-fluid" src="/media/inesc.png"/>
+		    <img style="width: 125px;" class="img-fluid" src="{% static "inesc.png" %}"/>
                 </p>
                 <p>
-                    <img style="width: 100px" class="img-fluid" src="/media/fct.png"/>
+		    <img style="width: 100px" class="img-fluid" src="{% static "fct.png" %}"/>
                 </p>
             </div>
         </div>

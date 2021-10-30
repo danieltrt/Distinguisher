@@ -40,6 +40,8 @@ class UnchartItProgram(CProgram):
     def __init__(self, path=None, f=None, n_cols=10, vars=None):
         CProgram.lock.acquire()
         self.vars = vars
+        self.mappings = {"LIS": 3, "OPO": 2, "GVA": 1}
+        self.mappings_c = 4
         self.count = 0
         self.n_cols = n_cols
         rx = re.compile(r'\.R$')
@@ -83,22 +85,24 @@ class UnchartItProgram(CProgram):
                 return f'filter(df, lte, {self.vars[col]}, {val});'
             elif line.find('==') != -1:
                 col, val = rx.search(line).group(1).replace(' ', '').split('==')
-                if val == "\"LIS\"":
-                    val = 3
-                if val == "\"OPO\"":
-                    val = 2
-                if val == "\"GVA\"":
-                    val = 1
+                if '"' in val:
+                    val = val[1:-1]
+                    arg = self.mappings.get(val, None)
+                    if None:
+                        self.mappings[val] = self.mappings_c
+                        self.mappings_c += 1
+                    val = self.mappings[val]
                 self.check_col(col)
                 return f'filter(df, eq, {self.vars[col]}, {val});'
             elif line.find('!=') != -1:
                 col, val = rx.search(line).group(1).replace(' ', '').split('!=')
-                if val == "\"LIS\"":
-                    val = 3
-                if val == "\"OPO\"":
-                    val = 2
-                if val == "\"GVA\"":
-                    val = 1
+                if '"' in val:
+                    val = val[1:-1]
+                    arg = self.mappings.get(val, None)
+                    if None:
+                        self.mappings[val] = self.mappings_c
+                        self.mappings_c += 1
+                    val = self.mappings[val]
                 self.check_col(col)
                 return f'filter(df, ne, {self.vars[col]}, {val});'
         elif line.find('mutate_date') != -1:
@@ -163,3 +167,4 @@ class UnchartItProgram(CProgram):
         if arg is None:
             self.vars[col] = self.count
             self.count += 1
+

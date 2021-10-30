@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .src.predict import *
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
 from .models import Chart
@@ -14,6 +13,7 @@ def index(request):
 
 
 def upload(request):
+    from .src.predict import chart_to_table
     res = None
     for file_name in list(request.FILES.keys()):
         f = request.FILES[file_name]

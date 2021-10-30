@@ -94,7 +94,7 @@ def submit(request, question_id):
         key = "choice"
         selected_choice = question.choice_set.get(pk=request.POST[key])
         selected_choice.save()
-        return HttpResponseRedirect(reverse('dist:options_opt', kwargs={'choice_id': selected_choice.id}))
+        return HttpResponseRedirect('/unchartit' + reverse('dist:options_opt', kwargs={'choice_id': selected_choice.id}))
 
     elif question.interaction_model == YESNO:
         correctness = None
@@ -110,7 +110,7 @@ def submit(request, question_id):
         selected_choice.correctness = correctness
         selected_choice.save()
 
-        return HttpResponseRedirect(reverse('dist:yesno_opt', kwargs={'choice_id': selected_choice.id}))
+        return HttpResponseRedirect('/unchartit' + reverse('dist:yesno_opt', kwargs={'choice_id': selected_choice.id}))
 
 
 def index(request):
